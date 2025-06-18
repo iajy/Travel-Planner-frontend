@@ -135,7 +135,7 @@ const Hero = () => {
       <section id="hero" className="relative h-screen overflow-hidden">
         {/* Background Image */}
         <img
-          src="./src/assets/landing-hero.jpg"
+          src="src/assets/landing-hero.jpg"
           alt="Mountain Adventure"
           className="w-full h-full object-cover absolute -z-10"
         />
