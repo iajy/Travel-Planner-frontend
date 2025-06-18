@@ -154,7 +154,7 @@ const Ticket = () => {
           initial={{ x: 250, y: -250 }}
           animate={{ x: 0, y: 0 }}
           transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-          src="src/assets/airplane-297578_1280.webp"
+          src="/airplane-297578_1280.webp"
           alt="Airplane"
           className="absolute top-20 right-10 w-40 h-40 opacity-10 pointer-events-none -z-10"
         />
@@ -174,6 +174,7 @@ const Ticket = () => {
                   Origin (city or IATA)
                 </label>
                 <input
+                  required
                   id="origin"
                   type="text"
                   placeholder="Enter origin"
@@ -190,6 +191,7 @@ const Ticket = () => {
                   Destination (city or IATA)
                 </label>
                 <input
+                  required
                   id="destination"
                   type="text"
                   placeholder="Enter destination"
@@ -206,6 +208,7 @@ const Ticket = () => {
                   Departure Date
                 </label>
                 <input
+                  required
                   id="departureDate"
                   type="date"
                   min={new Date().toISOString().split("T")[0]}

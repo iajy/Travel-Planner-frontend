@@ -37,7 +37,7 @@ const About = () => {
         {/* Feature 1 */}
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
           <div className="flex items-center gap-4">
-            <img src="src/assets/map.webp" className="h-16" alt="Map" />
+            <img src="/map.webp" className="h-16" alt="Map" />
             <span className="text-2xl font-bold text-indigo-700">
               Finding <br /> Destinations
             </span>
@@ -50,7 +50,7 @@ const About = () => {
         {/* Feature 2 */}
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
           <div className="flex items-center gap-4">
-            <img src="src/assets/story.webp" className="h-16" alt="Story" />
+            <img src="/story.webp" className="h-16" alt="Story" />
             <span className="text-2xl font-bold text-indigo-700">
               Personalize <br /> Your Activities
             </span>
@@ -63,7 +63,7 @@ const About = () => {
         {/* Feature 3 */}
         <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
           <div className="flex items-center gap-4">
-            <img src="src/assets/food.webp" className="h-16" alt="Food" />
+            <img src="/food.webp" className="h-16" alt="Food" />
             <span className="text-2xl font-bold text-indigo-700">
               Local Cuisine <br /> Recommendations
             </span>

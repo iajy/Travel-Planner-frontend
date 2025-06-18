@@ -12,7 +12,7 @@ const Destination = () => {
     <div>
       <section id="destination" className="flex flex-col justify-center items-center gap-3">
         <img
-          src="src\\assets\\background_visual-85f87405.svg"
+          src="/background_visual-85f87405.svg"
           className="absolute object-cover w-full"
           alt=""
         />
@@ -33,7 +33,7 @@ const Destination = () => {
               className="relative overflow-hidden rounded-2xl"
             >
               <img
-                src="src\\assets\\london-eye-351203_1280.jpg"
+                src="/london-eye-351203_1280.jpg"
                 alt=""
                 className="h-60 w-150 object-cover rounded-2xl transition-transform transform duration-600 hover:scale-110 hover:brightness-50 cursor-pointer"
               />
@@ -56,7 +56,7 @@ const Destination = () => {
               className="relative overflow-hidden rounded-2xl"
             >
               <img
-                src="src\\assets\\river-3740371_1280.jpg"
+                src="/river-3740371_1280.jpg"
                 alt=""
                 className="h-100 w-150 object-cover rounded-2xl transition-transform transform duration-600 hover:scale-110 hover:brightness-50 cursor-pointer"
               />
@@ -81,7 +81,7 @@ const Destination = () => {
           >
             <div className="relative overflow-hidden rounded-2xl">
               <img
-                src="src\\assets\\taj-mahal-383083_1280.jpg"
+                src="/taj-mahal-383083_1280.jpg"
                 alt=""
                 className="h-110 w-100 object-cover rounded-2xl transition-transform transform duration-600 hover:scale-110 hover:brightness-50 cursor-pointer"
               />
@@ -98,7 +98,7 @@ const Destination = () => {
             </div>
             <div className="relative overflow-hidden rounded-2xl">
               <img
-                src="src\\assets\\brazil-4809011_1280.jpg"
+                src="/brazil-4809011_1280.jpg"
                 alt=""
                 className="h-50 w-100 object-cover rounded-2xl transition-transform transform duration-600 hover:scale-110 hover:brightness-50 cursor-pointer"
               />

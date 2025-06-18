@@ -109,7 +109,7 @@ const MyItineary = () => {
       <section>
         {/* Background Image */}
         <img
-          src=".\src\assets\background_visual-85f87405.svg"
+          src="/background_visual-85f87405.svg"
           alt=""
           className="w-screen h-screen object-cover absolute -z-10"
         />
