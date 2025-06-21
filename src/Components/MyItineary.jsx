@@ -61,7 +61,13 @@ const MyItineary = () => {
   const handleFetch = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/itineraries/${userId}`
+        `http://localhost:8080/api/itineraries/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       setItineraries(response.data);
       setItinerariesCard(!itinerariesCard);
@@ -75,8 +81,14 @@ const MyItineary = () => {
     try {
       const updatedItinerary = itineraries[id];
       await axios.put(
-        `http://localhost:8000/api/itineraries/${uuid}`,
-        updatedItinerary
+        `http://localhost:8080/api/itineraries/${uuid}`,
+        updatedItinerary,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       setOpenEdit(false);
       alert("Itinerary Updated!");
@@ -90,7 +102,13 @@ const MyItineary = () => {
     if (window.confirm("Are you sure you want to delete this itinerary?")) {
       try {
         await axios.delete(
-          `http://localhost:8000/api/itineraries/${deleteId}`
+          `http://localhost:8080/api/itineraries/${deleteId}`,
+          {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
         );
         setItinerariesCard(!itinerariesCard);
       } catch (error) {

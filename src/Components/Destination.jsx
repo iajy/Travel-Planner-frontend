@@ -24,7 +24,7 @@ const Destination = () => {
           where hidden gems and cultural treasures await discovery.
         </p>
         <div className="flex">
-          <motion.div className="flex flex-col gap-10 p-4 m-4">
+          <motion.div className="hidden md:flex flex-col gap-10 p-4 m-4 ">
             <motion.div
               ref={ref}
               initial={{ opacity: 0, x: -100 }}

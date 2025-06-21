@@ -129,11 +129,15 @@ const AppBar = () => {
     <>
       {/* Header / App Bar */}
       <header className="fixed w-full z-50 bg-white/30 backdrop-blur-lg shadow-md border-b border-white/20 px-6 py-4 flex justify-between items-center">
-        <div className="text-3xl font-extrabold text-indigo-600">
-          Travel<span className="text-gray-800">-Planner</span>
+        <div className="flex justify-between w-full md:flex text-3xl font-extrabold text-indigo-600">
+          <div className=" bg-white rounded-2xl md:hidden ">=</div>
+          <div>
+            <span>Travel</span>
+            <span className="text-gray-800">-Planner</span>
+          </div>
         </div>
         <nav>
-          <ul className="flex items-center gap-8 text-sm md:text-base">
+          <ul className="hidden md:flex items-center gap-8 text-sm md:text-base">
             <Link to={"/"}>
               <li className="hover:text-indigo-400 transition cursor-pointer">
                 Home
@@ -154,7 +158,7 @@ const AppBar = () => {
                 Tickets
               </li>
             </Link>
-           
+
             {localStorage.getItem("jwtToken") ? (
               <div className="relative">
                 <button
@@ -164,7 +168,8 @@ const AppBar = () => {
                   }}
                   className="w-10 h-10 bg-indigo-600 text-white rounded-full text-lg font-bold"
                 >
-                  {localStorage.getItem("username") ?.charAt(0).toUpperCase() || "U"}
+                  {localStorage.getItem("username")?.charAt(0).toUpperCase() ||
+                    "U"}
                 </button>
                 {sideBar && (
                   <motion.div

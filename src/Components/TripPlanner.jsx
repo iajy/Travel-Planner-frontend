@@ -17,7 +17,7 @@ export default function TripPlanner() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/generate-itinerary",
+        "http://localhost:8080/api/generate-itinerary",
         form
       );
       const aiResponse = res.data;

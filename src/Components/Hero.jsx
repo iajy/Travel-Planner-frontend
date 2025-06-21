@@ -65,8 +65,14 @@ const Hero = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/generate-itinerary",
-        form
+        "http://localhost:8080/api/generate-itinerary",
+        form,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       const aiResponse = res.data;
       console.log("AI response:", res.data);
@@ -77,8 +83,7 @@ const Hero = () => {
       alert(
         "Something went wrong: " + (err.response?.data?.error || err.message)
       );
-    }
-    finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -87,8 +92,13 @@ const Hero = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/itineraries",
-        itinerary
+        "http://localhost:8080/api/itineraries",
+        itinerary,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       console.log(res.data);
       const uuid = res.data.id;
@@ -112,7 +122,7 @@ const Hero = () => {
   };
 
   const { ref, inView } = useInView({ threshold: 0.5 });
-  
+
   const formRef = useRef();
 
   useEffect(() => {
@@ -168,15 +178,12 @@ const Hero = () => {
             Your next Adventure
           </h1>
           <h2
-            className="text-3xl md:text-4xl font-bold text-blue-100 mb-4"
+            className="text-3xl md:text-4xl font-bold text-white mb-4"
             style={{ fontSize: "2rem", lineHeight: "1.2" }}
           >
             Starts Here..
           </h2>
-          <p
-            className="text-lg text-gray-200 mb-6"
-            style={{ fontSize: "1.2rem" }}
-          >
+          <p className="text-lg text-white mb-6" style={{ fontSize: "1.2rem" }}>
             Life’s too short to stay in one place – go explore, dream big, and
             wander freely.
           </p>

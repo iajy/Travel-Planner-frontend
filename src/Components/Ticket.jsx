@@ -19,8 +19,13 @@ const Ticket = () => {
   const fetchIataCode = async (locationName) => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/flights/iata",
-        { params: { keyword: locationName } }
+        "http://localhost:8080/api/flights/iata",
+        { params: { keyword: locationName } ,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       return response.data.data[0]?.iataCode || locationName;
     } catch (error) {
@@ -32,8 +37,13 @@ const Ticket = () => {
   const fetchLocationName = async (iataCode) => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/flights/location",
-        { params: { iataCode } }
+        "http://localhost:8080/api/flights/location",
+        { params: { iataCode } ,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       const data = response.data.data[0];
       return data ? `${data.address.cityName} - ${data.name}` : iataCode;
@@ -55,7 +65,7 @@ const Ticket = () => {
     try {
       const originCode = await fetchIataCode(origin);
       const destinationCode = await fetchIataCode(destination);
-      const response = await axios.get("http://localhost:8000/api/flights", {
+      const response = await axios.get("http://localhost:8080/api/flights", {
         params: {
           origin: originCode,
           destination: destinationCode,
@@ -64,7 +74,11 @@ const Ticket = () => {
           adults,
           children,
         },
-      });
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+          },
+        });
 
       const flightData = response.data.data || [];
       const locationPromises = flightData.flatMap((flight) => {
@@ -111,7 +125,7 @@ const Ticket = () => {
       };
 
       const response = await axios.post(
-        `http://localhost:8000/api/itineraries/${itineraryId}/booking`,
+        `http://localhost:8080/api/itineraries/${itineraryId}/booking`,
         bookingRequest,
         {
           headers: {
@@ -148,16 +162,6 @@ const Ticket = () => {
             Discover the best flight deals with our smart search feature.
           </p>
         </motion.div>
-
-        {/* Airplane Animation */}
-        <motion.img
-          initial={{ x: 250, y: -250 }}
-          animate={{ x: 0, y: 0 }}
-          transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-          src="/airplane-297578_1280.webp"
-          alt="Airplane"
-          className="absolute top-20 right-10 w-40 h-40 opacity-10 pointer-events-none -z-10"
-        />
 
         {/* Search Form */}
         <div className="max-w-5xl mx-auto px-4">
