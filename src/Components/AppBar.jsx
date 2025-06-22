@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { IoClose, IoMenu } from "react-icons/io5";
 
 const AppBar = () => {
   const [signOpen, setSignOpen] = useState(false);
@@ -14,6 +15,8 @@ const AppBar = () => {
   const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+
+  const [menu, setMenu] = useState(true);
 
   const loginOverlay = () => {
     setLoginOpen(true);
@@ -124,13 +127,120 @@ const AppBar = () => {
   const googleLogin = () => {
     window.location.href = "http://localhost:8080/oauth2/authorization/google";
   };
+  const variants = {
+    open: {
+      clipPath: "circle(1000px at 39px 43px)",
+      transition: { type: "tween" },
+    },
+    closed: {
+      clipPath: "circle(25px at 8px 5px)",
+      transition: { type: "tween" },
+    },
+  };
 
   return (
     <>
       {/* Header / App Bar */}
       <header className="fixed w-full z-50 bg-white/30 backdrop-blur-lg shadow-md border-b border-white/20 px-6 py-4 flex justify-between items-center">
         <div className="flex justify-between w-full md:flex text-3xl font-extrabold text-indigo-600">
-          <div className=" bg-white rounded-2xl md:hidden ">=</div>
+          <motion.div
+            animate={menu ? "closed" : "open"}
+            className="md:hidden bg-red-900 "
+          >
+            <motion.div
+              className="fixed w-1/2 h-screen/2 rounded-2xl "
+              variants={variants}
+            >
+              <div className="">
+                {menu ? (
+                  <IoMenu size={30} onClick={() => setMenu((prev) => !prev)} />
+                ) : (
+                  <IoClose size={30} onClick={() => setMenu((prev) => !prev)} />
+                )}
+              </div>
+              {!menu && (
+                <div className="bg-white/70 rounded-2xl">
+                  <ul className="flex flex-col md:hidden gap-y-8 py-5 px-3 text-sm md:text-base">
+                    <Link to={"/"}>
+                      <li className="hover:text-indigo-400 transition cursor-pointer">
+                        Home
+                      </li>
+                    </Link>
+                    <li
+                      onClick={() =>
+                        document
+                          .getElementById("destination")
+                          ?.scrollIntoView({ behavior: "smooth" })
+                      }
+                      className="hover:text-indigo-400 transition cursor-pointer"
+                    >
+                      Destinations
+                    </li>
+                    <Link to={"/ticket"}>
+                      <li className="hover:text-indigo-400 transition cursor-pointer">
+                        Tickets
+                      </li>
+                    </Link>
+
+                    {localStorage.getItem("jwtToken") ? (
+                      <div className="relative">
+                        <button
+                          onClick={() => {
+                            setSideBar(!sideBar);
+                            handleAdmin(localStorage.getItem("userId"));
+                          }}
+                          className="w-10 h-10 bg-indigo-600 text-white rounded-full text-lg font-bold"
+                        >
+                          {localStorage
+                            .getItem("username")
+                            ?.charAt(0)
+                            .toUpperCase() || "U"}
+                        </button>
+                        {sideBar && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute top-12 right-0 w-48 bg-white text-gray-800 rounded-xl shadow-xl overflow-hidden"
+                          >
+                            <Link to={"/myitineary"}>
+                              <div className="px-4 py-3 hover:bg-gray-100 cursor-pointer">
+                                My Itinerary
+                              </div>
+                            </Link>
+                            {admin && (
+                              <Link to={"/admin"}>
+                                <div className="px-4 py-3 hover:bg-blue-50 text-blue-600 cursor-pointer">
+                                  Admin Panel
+                                </div>
+                              </Link>
+                            )}
+                            <div
+                              onClick={() => {
+                                localStorage.clear();
+                                window.location.reload();
+                              }}
+                              className="px-4 py-3 hover:bg-red-50 text-red-600 cursor-pointer"
+                            >
+                              Logout
+                            </div>
+                          </motion.div>
+                        )}
+                      </div>
+                    ) : (
+                      <button
+                        onClick={loginOverlay}
+                        className="ml-4 px-5 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition"
+                      >
+                        Login
+                      </button>
+                    )}
+                  </ul>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
           <div>
             <span>Travel</span>
             <span className="text-gray-800">-Planner</span>
@@ -223,7 +333,7 @@ const AppBar = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="bg-white p-8 rounded-2xl w-full max-w-md shadow-2xl relative"
+            className="bg-white p-8 rounded-2xl w-full max-w-md shadow-2xl relative m-3"
           >
             <h2 className="text-2xl font-bold mb-6 text-center text-indigo-600">
               Login
@@ -284,7 +394,7 @@ const AppBar = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="bg-white p-8 rounded-2xl w-full max-w-md shadow-2xl relative"
+            className="bg-white p-8 rounded-2xl w-full max-w-md shadow-2xl relative m-3"
           >
             <h2 className="text-2xl font-bold mb-6 text-center">
               Create Account

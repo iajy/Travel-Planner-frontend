@@ -93,7 +93,8 @@ const Hero = () => {
     try {
       const res = await axios.post(
         "http://localhost:8080/api/itineraries",
-        itinerary,{
+        itinerary,
+        {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
             "Content-Type": "application/json",
@@ -159,17 +160,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7 }}
-          style={{
-            position: "absolute",
-            top: "55%", // Adjust based on your image
-            left: "70%",
-            transform: "translate(-50%, -50%)",
-            textAlign: "center",
-            width: "100%",
-            maxWidth: "600px",
-            padding: "20px",
-            zIndex: 20,
-          }}
+          className="absolute top-[55%] left-[50%] md:left-[70%] -translate-x-1/2 -translate-y-1/2 text-center w-full max-w-[600px] p-5 z-20"
         >
           <h1
             className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg mb-3"
