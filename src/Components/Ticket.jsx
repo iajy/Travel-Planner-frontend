@@ -3,6 +3,7 @@ import axios from "axios";
 import AppBar from "./AppBar";
 import Footer from "./Footer";
 import { motion } from "framer-motion";
+import PayPalButton from "./PayPalButton";
 
 const Ticket = () => {
   const [origin, setOrigin] = useState("");
@@ -15,11 +16,13 @@ const Ticket = () => {
   const [locationNames, setLocationNames] = useState({});
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("jwtToken");
+  const [selectedFlight, setSelectedFlight] = useState(null);
+
 
   const fetchIataCode = async (locationName) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/flights/iata",
+        "http://13.203.101.140:8080/api/flights/iata",
         { params: { keyword: locationName } ,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -37,7 +40,7 @@ const Ticket = () => {
   const fetchLocationName = async (iataCode) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/flights/location",
+        "http://13.203.101.140:8080/api/flights/location",
         { params: { iataCode } ,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -65,7 +68,7 @@ const Ticket = () => {
     try {
       const originCode = await fetchIataCode(origin);
       const destinationCode = await fetchIataCode(destination);
-      const response = await axios.get("http://localhost:8080/api/flights", {
+      const response = await axios.get("http://13.203.101.140:8080/api/flights", {
         params: {
           origin: originCode,
           destination: destinationCode,
@@ -125,7 +128,7 @@ const Ticket = () => {
       };
 
       const response = await axios.post(
-        `http://localhost:8080/api/itineraries/${itineraryId}/booking`,
+        `http://13.203.101.140:8080/api/itineraries/${itineraryId}/booking`,
         bookingRequest,
         {
           headers: {
@@ -344,6 +347,20 @@ const Ticket = () => {
                     >
                       Book Now
                     </motion.button>
+                    {selectedFlight === flight && (
+  <div className="mt-4">
+    <h3 className="text-center text-sm mb-2">Pay ${flight.price.total} to confirm:</h3>
+    <PayPalButton
+      amount={flight.price.total}
+      onSuccess={async (order) => {
+        // Call your booking handler to save to DB
+        await handleBooking(flight); 
+        setSelectedFlight(null); // reset
+        alert("Booking & Payment Successful!");
+      }}
+    />
+  </div>
+)}
                   </div>
                 </motion.div>
               );
