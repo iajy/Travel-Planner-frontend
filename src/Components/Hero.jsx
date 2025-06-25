@@ -65,7 +65,7 @@ const Hero = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://13.203.101.140:8080/api/generate-itinerary",
+        "https://13.203.101.140:8080/api/generate-itinerary",
         form,
         {
           headers: {
