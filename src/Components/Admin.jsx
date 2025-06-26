@@ -7,7 +7,7 @@ const Admin = () => {
 
   const userDetails = async () => {
     try {
-      const res = await axios.get("http://13.203.101.140:8080/auth/all-users");
+      const res = await axios.get("https://13.203.101.140:8080/auth/all-users");
 
       //   console.log(res.data);
       setUsers(res.data);
@@ -18,7 +18,7 @@ const Admin = () => {
 
   const handleUserDelete = async (userId) => {
     try {
-      await axios.delete(`http://13.203.101.140:8080/auth/delete-user/${userId}`, {
+      await axios.delete(`https://13.203.101.140:8080/auth/delete-user/${userId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
         },
