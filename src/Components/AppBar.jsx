@@ -39,7 +39,7 @@ const AppBar = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "https://13.203.101.140:8080/auth/send-otp",
+        "https://13.203.101.140//auth/send-otp",
         {
           email,
         },
@@ -60,7 +60,7 @@ const AppBar = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "https://13.203.101.140:8080/auth/verify-otp",
+        "https://13.203.101.140//auth/verify-otp",
         {
           email,
           otp,
@@ -80,7 +80,7 @@ const AppBar = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://13.203.101.140:8080/auth/login", {
+      const res = await axios.post("https://13.203.101.140//auth/login", {
         email,
         password,
       });
@@ -98,7 +98,7 @@ const AppBar = () => {
   const register = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://13.203.101.140:8080/auth/register", {
+      await axios.post("https://13.203.101.140//auth/register", {
         email,
         password,
         username,
@@ -112,7 +112,7 @@ const AppBar = () => {
 
   const handleAdmin = async (userId) => {
     try {
-      const res = await axios.get("https://13.203.101.140:8080/auth/user-role", {
+      const res = await axios.get("https://13.203.101.140//auth/user-role", {
         params: { userId },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -125,7 +125,7 @@ const AppBar = () => {
   };
 
   const googleLogin = () => {
-    window.location.href = "https://13.203.101.140:8080/oauth2/authorization/google";
+    window.location.href = "https://13.203.101.140//oauth2/authorization/google";
   };
   const variants = {
     open: {
