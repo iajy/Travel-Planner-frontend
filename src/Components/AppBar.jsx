@@ -128,7 +128,7 @@ const AppBar = () => {
   };
 
   const googleLogin = () => {
-    window.location.href = "http://13.203.101.140/oauth2/authorization/google";
+    window.location.href = "https://13.203.101.140/oauth2/authorization/google";
   };
   const variants = {
     open: {
