@@ -22,7 +22,7 @@ const Ticket = () => {
   const fetchIataCode = async (locationName) => {
     try {
       const response = await axios.get(
-        "http://13.203.101.140//api/flights/iata",
+        "https://13.203.101.140/api/flights/iata",
         { params: { keyword: locationName } ,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -40,7 +40,7 @@ const Ticket = () => {
   const fetchLocationName = async (iataCode) => {
     try {
       const response = await axios.get(
-        "http://13.203.101.140//api/flights/location",
+        "https://13.203.101.140/api/flights/location",
         { params: { iataCode } ,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -68,7 +68,7 @@ const Ticket = () => {
     try {
       const originCode = await fetchIataCode(origin);
       const destinationCode = await fetchIataCode(destination);
-      const response = await axios.get("http://13.203.101.140//api/flights", {
+      const response = await axios.get("https://13.203.101.140/api/flights", {
         params: {
           origin: originCode,
           destination: destinationCode,
@@ -128,7 +128,7 @@ const Ticket = () => {
       };
 
       const response = await axios.post(
-        `http://13.203.101.140//api/itineraries/${itineraryId}/booking`,
+        `https://13.203.101.140/api/itineraries/${itineraryId}/booking`,
         bookingRequest,
         {
           headers: {
