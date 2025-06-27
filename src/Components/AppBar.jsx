@@ -36,25 +36,27 @@ const AppBar = () => {
   };
 
   const handleSendOtp = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post(
-        "https://13.203.101.140/auth/send-otp",
-        {
-          email,
+  e.preventDefault();
+  try {
+    await axios.post(
+      "https://13.203.101.140/auth/send-otp",
+      {
+        email: email, 
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
-      setOtpOpen(true);
-      alert("OTP sent to email");
-    } catch (err) {
-      alert("Error sending OTP", err);
-    }
-  };
+      }
+    );
+    setOtpOpen(true);
+    alert("OTP sent to email");
+  } catch (err) {
+    console.error(err);
+    alert("Error sending OTP");
+  }
+};
+
 
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
@@ -67,13 +69,14 @@ const AppBar = () => {
         },
         {
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/json",
           },
         }
       );
       setFlag(true);
     } catch (err) {
-      alert("Wrong OTP", err);
+      console.error(err);
+      alert("Wrong OTP");
     }
   };
 
@@ -125,7 +128,7 @@ const AppBar = () => {
   };
 
   const googleLogin = () => {
-    window.location.href = "https://13.203.101.140/oauth2/authorization/google";
+    window.location.href = "http://13.203.101.140/oauth2/authorization/google";
   };
   const variants = {
     open: {
