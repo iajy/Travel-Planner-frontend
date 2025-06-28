@@ -62,7 +62,7 @@ const AppBar = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "https://13.203.101.140/auth/verify-otp",
+        "https://ajaybinu-travelplanner.duckdns.org/auth/verify-otp",
         {
           email,
           otp,
@@ -83,7 +83,7 @@ const AppBar = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://13.203.101.140/auth/login", {
+      const res = await axios.post("https://ajaybinu-travelplanner.duckdns.org/auth/login", {
         email,
         password,
       });
@@ -101,7 +101,7 @@ const AppBar = () => {
   const register = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://13.203.101.140/auth/register", {
+      await axios.post("https://ajaybinu-travelplanner.duckdns.org/auth/register", {
         email,
         password,
         username,
@@ -115,7 +115,7 @@ const AppBar = () => {
 
   const handleAdmin = async (userId) => {
     try {
-      const res = await axios.get("https://13.203.101.140/auth/user-role", {
+      const res = await axios.get("https://ajaybinu-travelplanner.duckdns.org/auth/user-role", {
         params: { userId },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -128,7 +128,7 @@ const AppBar = () => {
   };
 
   const googleLogin = () => {
-    window.location.href = "https://13.203.101.140/oauth2/authorization/google";
+    window.location.href = "https://ajaybinu-travelplanner.duckdns.org/oauth2/authorization/google";
   };
   const variants = {
     open: {

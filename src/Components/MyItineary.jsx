@@ -61,7 +61,7 @@ const MyItineary = () => {
   const handleFetch = async () => {
     try {
       const response = await axios.get(
-        `https://13.203.101.140/api/itineraries/${userId}`,
+        `https://ajaybinu-travelplanner.duckdns.org/api/itineraries/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -81,7 +81,7 @@ const MyItineary = () => {
     try {
       const updatedItinerary = itineraries[id];
       await axios.put(
-        `https://13.203.101.140/api/itineraries/${uuid}`,
+        `https://ajaybinu-travelplanner.duckdns.org/api/itineraries/${uuid}`,
         updatedItinerary,
         {
           headers: {
@@ -102,7 +102,7 @@ const MyItineary = () => {
     if (window.confirm("Are you sure you want to delete this itinerary?")) {
       try {
         await axios.delete(
-          `https://13.203.101.140/api/itineraries/${deleteId}`,
+          `https://ajaybinu-travelplanner.duckdns.org/api/itineraries/${deleteId}`,
           {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
