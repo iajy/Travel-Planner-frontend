@@ -39,7 +39,7 @@ const AppBar = () => {
   e.preventDefault();
   try {
     await axios.post(
-      "https://13.203.101.140/auth/send-otp",
+      "https://ajaybinu-travelplanner.duckdns.org/auth/send-otp",
       {
         email: email, 
       },
