@@ -92,7 +92,7 @@ const AppBar = () => {
       localStorage.setItem("jwtToken", token);
       localStorage.setItem("username", username);
       localStorage.setItem("userId", userId);
-      alert("Login successful");
+      toast.success("Login successful");
       closeLogin();
     } catch (err) {
       // alert("Invalid credentials", err);
