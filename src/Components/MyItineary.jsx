@@ -3,6 +3,7 @@ import AppBar from "./AppBar";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import toast from "react-hot-toast";
 
 const MyItineary = () => {
   const userId = localStorage.getItem("userId");
@@ -91,7 +92,7 @@ const MyItineary = () => {
         }
       );
       setOpenEdit(false);
-      alert("Itinerary Updated!");
+      toast.success("Itinerary Updated!");
     } catch (error) {
       console.log("Update Error:", error);
     }

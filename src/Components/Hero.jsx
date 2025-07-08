@@ -6,6 +6,7 @@ import { useInView } from "react-intersection-observer";
 import About from "./About";
 import AppBar from "./AppBar";
 import Footer from "./Footer";
+import toast from "react-hot-toast";
 
 const Hero = () => {
   const username = localStorage.getItem("username");
@@ -30,7 +31,7 @@ const Hero = () => {
     if (token) {
       setOpenForm(!openForm);
     } else {
-      alert("Login First...");
+      toast.error("Login First...");
     }
   };
 
@@ -115,10 +116,10 @@ const Hero = () => {
         notes: "",
         collaborators: [],
       });
-      alert("Itinerary created successfully!");
+      toast.success("Itinerary created successfully!");
       setOpenForm(false);
     } catch (err) {
-      alert(err);
+      toast.error("Itinerary created failed");
     }
   };
 

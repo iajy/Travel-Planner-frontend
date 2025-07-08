@@ -51,10 +51,10 @@ const AppBar = () => {
       }
     );
     setOtpOpen(true);
-    alert("OTP sent to email");
+    toast.success("OTP sent to email");
   } catch (err) {
     console.error(err);
-    alert("Error sending OTP");
+   toast.error("Error sending OTP");
   }
 };
 
@@ -77,7 +77,7 @@ const AppBar = () => {
       setFlag(true);
     } catch (err) {
       console.error(err);
-      alert("Wrong OTP");
+      toast.error("Wrong OTP");
     }
   };
 
@@ -96,7 +96,7 @@ const AppBar = () => {
       closeLogin();
     } catch (err) {
       // alert("Invalid credentials", err);
-      toast.error("Invalid credentials", err);
+      toast.error("Invalid credentials");
 
     }
   };
@@ -112,7 +112,7 @@ const AppBar = () => {
       setSignOpen(false);
       setLoginOpen(true);
     } catch (err) {
-      alert("Registration failed", err);
+      toast.error("Registration failed");
     }
   };
 
@@ -126,7 +126,7 @@ const AppBar = () => {
       });
       setAdmin(res.data.includes("ADMIN"));
     } catch (err) {
-      alert("Failed to load role", err);
+      toast.error("Failed to load role");
     }
   };
 

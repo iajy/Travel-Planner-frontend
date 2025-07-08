@@ -4,6 +4,7 @@ import AppBar from "./AppBar";
 import Footer from "./Footer";
 import { motion } from "framer-motion";
 import PayPalButton from "./PayPalButton";
+import toast from "react-hot-toast";
 
 const Ticket = () => {
   const [origin, setOrigin] = useState("");
@@ -59,7 +60,7 @@ const Ticket = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!token) {
-      alert("Please log in first!");
+      toast.error("Please log in first!");
       return;
     }
 
@@ -109,7 +110,7 @@ const Ticket = () => {
 
   const handleBooking = async (flight) => {
     if (!token) {
-      alert("Please log in first!");
+      toast.error("Please log in first!");
       return;
     }
 
@@ -138,13 +139,13 @@ const Ticket = () => {
       );
 
       if (response.status === 200) {
-        alert("Booking successful!");
+        toast.success("Booking successful!");
       } else {
-        alert("Booking failed.");
+        toast.error("Booking failed.");
       }
     } catch (error) {
       console.error("Booking error:", error);
-      alert("Booking failed. Please try again.");
+      toast.error("Booking failed. Please try again.");
     }
   };
 
@@ -356,7 +357,7 @@ const Ticket = () => {
         // Call your booking handler to save to DB
         await handleBooking(flight); 
         setSelectedFlight(null); // reset
-        alert("Booking & Payment Successful!");
+        toast.success("Booking & Payment Successful!");
       }}
     />
   </div>

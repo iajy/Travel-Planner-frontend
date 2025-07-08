@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 
 const PayPalButton = ({ amount, onSuccess }) => {
   const paypalRef = useRef();
@@ -24,7 +25,7 @@ const PayPalButton = ({ amount, onSuccess }) => {
           },
           onError: (err) => {
             console.error(err);
-            alert("Payment failed. Please try again.");
+            toast.error("Payment failed. Please try again.");
           },
         })
         .render(paypalRef.current);

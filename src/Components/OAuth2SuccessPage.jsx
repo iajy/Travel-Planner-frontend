@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const OAuth2SuccessPage = () => {
@@ -14,7 +15,7 @@ const OAuth2SuccessPage = () => {
       localStorage.setItem("jwtToken", token);
       localStorage.setItem("userId", userId);
       localStorage.setItem("username", username);
-      alert("Login successful");
+      toast.success("Login successful");
       navigate("/");
       window.location.reload(); // Refresh for new state
     } else {
