@@ -3,6 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 const AppBar = () => {
   const [signOpen, setSignOpen] = useState(false);
@@ -94,7 +95,9 @@ const AppBar = () => {
       alert("Login successful");
       closeLogin();
     } catch (err) {
-      alert("Invalid credentials", err);
+      // alert("Invalid credentials", err);
+      toast.error("Invalid credentials", err);
+
     }
   };
 
