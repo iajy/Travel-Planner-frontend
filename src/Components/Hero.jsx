@@ -64,8 +64,10 @@ const Hero = () => {
   const handleSubmit = async (e) => {
   e.preventDefault();
   if (!token) {
-  toast.error("⚠️ Please log in first!");
+  toast.error("Please log in first!");
   return;
+  }else{
+    console.log("token present");
   }
   setLoading(true);
   try {
