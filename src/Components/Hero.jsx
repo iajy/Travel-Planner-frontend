@@ -59,36 +59,54 @@ const Hero = () => {
   });
 
   const handleChange = (e) =>
-    e.preventDefault();         //  checking line
-      setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = await axios.post(
-        "https://travel-planner-backend-production.up.railway.app/api/generate-itinerary",
-        form,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const aiResponse = res.data;
-      console.log("AI response:", res.data);
-      setResult(aiResponse.choices[0].message.content);
-      localStorage.setItem("result", result);
-    } catch (err) {
-      console.error("API error:", err.response?.data || err.message);
-      alert(
-        "Something went wrong: " + (err.response?.data?.error || err.message)
-      );
-    } finally {
-      setLoading(false);
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const res = await axios.post(
+      "https://travel-planner-backend-production.up.railway.app/api/generate-itinerary",
+      form,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const aiResponse = res.data;
+    console.log("AI response:", aiResponse);
+
+    // Check for errors (quota, invalid API key, etc.)
+    if (aiResponse.error) {
+      if (aiResponse.error.type === "insufficient_quota") {
+        toast.error("⚠️ Your AI quota is finished. Please upgrade or switch to free AI.");
+      } else {
+        toast.error("AI Error: " + aiResponse.error.message);
+      }
+      return;
     }
-  };
+
+    // Validate response format before accessing
+    if (!aiResponse.choices || !aiResponse.choices[0]) {
+      toast.error("AI did not return a valid response. Try again later.");
+      return;
+    }
+
+    const itineraryText = aiResponse.choices[0].message.content;
+    setResult(itineraryText);
+    localStorage.setItem("result", itineraryText);
+    
+  } catch (err) {
+    console.error("API error:", err.response?.data || err.message);
+    toast.error("Something went wrong: " + (err.response?.data?.error || err.message));
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const itinearyHandle = async (e) => {
     e.preventDefault();
