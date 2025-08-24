@@ -40,7 +40,7 @@ const AppBar = () => {
   e.preventDefault();
   try {
     await axios.post(
-      "https://ajaybinu-travelplanner.duckdns.org/auth/send-otp",
+      "https://travel-planner-backend-production.up.railway.app/auth/send-otp",
       {
         email: email, 
       },
@@ -63,7 +63,7 @@ const AppBar = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "https://ajaybinu-travelplanner.duckdns.org/auth/verify-otp",
+        "https://travel-planner-backend-production.up.railway.app/auth/verify-otp",
         {
           email,
           otp,
@@ -84,7 +84,7 @@ const AppBar = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://ajaybinu-travelplanner.duckdns.org/auth/login", {
+      const res = await axios.post("https://travel-planner-backend-production.up.railway.app/auth/login", {
         email,
         password,
       });
@@ -104,7 +104,7 @@ const AppBar = () => {
   const register = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://ajaybinu-travelplanner.duckdns.org/auth/register", {
+      await axios.post("https://travel-planner-backend-production.up.railway.app/auth/register", {
         email,
         password,
         username,
@@ -118,7 +118,7 @@ const AppBar = () => {
 
   const handleAdmin = async (userId) => {
     try {
-      const res = await axios.get("https://ajaybinu-travelplanner.duckdns.org/auth/user-role", {
+      const res = await axios.get("https://travel-planner-backend-production.up.railway.app/auth/user-role", {
         params: { userId },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -131,7 +131,7 @@ const AppBar = () => {
   };
 
   const googleLogin = () => {
-    window.location.href = "https://ajaybinu-travelplanner.duckdns.org/oauth2/authorization/google";
+    window.location.href = "https://travel-planner-backend-production.up.railway.app/oauth2/authorization/google";
   };
   const variants = {
     open: {

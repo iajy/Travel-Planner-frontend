@@ -23,7 +23,7 @@ const Ticket = () => {
   const fetchIataCode = async (locationName) => {
     try {
       const response = await axios.get(
-        "https://ajaybinu-travelplanner.duckdns.org/api/flights/iata",
+        "https://travel-planner-backend-production.up.railway.app/api/flights/iata",
         { params: { keyword: locationName } ,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -41,7 +41,7 @@ const Ticket = () => {
   const fetchLocationName = async (iataCode) => {
     try {
       const response = await axios.get(
-        "https://ajaybinu-travelplanner.duckdns.org/api/flights/location",
+        "https://travel-planner-backend-production.up.railway.app/api/flights/location",
         { params: { iataCode } ,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -69,7 +69,7 @@ const Ticket = () => {
     try {
       const originCode = await fetchIataCode(origin);
       const destinationCode = await fetchIataCode(destination);
-      const response = await axios.get("https://ajaybinu-travelplanner.duckdns.org/api/flights", {
+      const response = await axios.get("https://travel-planner-backend-production.up.railway.app/api/flights", {
         params: {
           origin: originCode,
           destination: destinationCode,
@@ -129,7 +129,7 @@ const Ticket = () => {
       };
 
       const response = await axios.post(
-        `https://ajaybinu-travelplanner.duckdns.org/api/itineraries/${itineraryId}/booking`,
+        `https://travel-planner-backend-production.up.railway.app/api/itineraries/${itineraryId}/booking`,
         bookingRequest,
         {
           headers: {

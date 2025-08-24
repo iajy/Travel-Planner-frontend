@@ -17,7 +17,7 @@ export default function TripPlanner() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://ajaybinu-travelplanner.duckdns.org/api/generate-itinerary",
+        "https://travel-planner-backend-production.up.railway.app/api/generate-itinerary",
         form
       );
       const aiResponse = res.data;

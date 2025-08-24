@@ -7,7 +7,7 @@ const Admin = () => {
 
   const userDetails = async () => {
     try {
-      const res = await axios.get("https://ajaybinu-travelplanner.duckdns.org/auth/all-users");
+      const res = await axios.get("https://travel-planner-backend-production.up.railway.app/auth/all-users");
 
       //   console.log(res.data);
       setUsers(res.data);
@@ -18,7 +18,7 @@ const Admin = () => {
 
   const handleUserDelete = async (userId) => {
     try {
-      await axios.delete(`https://ajaybinu-travelplanner.duckdns.org/auth/delete-user/${userId}`, {
+      await axios.delete(`https://travel-planner-backend-production.up.railway.app/auth/delete-user/${userId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
         },

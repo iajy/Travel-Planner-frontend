@@ -62,7 +62,7 @@ const MyItineary = () => {
   const handleFetch = async () => {
     try {
       const response = await axios.get(
-        `https://ajaybinu-travelplanner.duckdns.org/api/itineraries/${userId}`,
+        `https://travel-planner-backend-production.up.railway.app/api/itineraries/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -82,7 +82,7 @@ const MyItineary = () => {
     try {
       const updatedItinerary = itineraries[id];
       await axios.put(
-        `https://ajaybinu-travelplanner.duckdns.org/api/itineraries/${uuid}`,
+        `https://travel-planner-backend-production.up.railway.app/api/itineraries/${uuid}`,
         updatedItinerary,
         {
           headers: {
@@ -103,7 +103,7 @@ const MyItineary = () => {
     if (window.confirm("Are you sure you want to delete this itinerary?")) {
       try {
         await axios.delete(
-          `https://ajaybinu-travelplanner.duckdns.org/api/itineraries/${deleteId}`,
+          `https://travel-planner-backend-production.up.railway.app/api/itineraries/${deleteId}`,
           {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
