@@ -63,6 +63,10 @@ const Hero = () => {
 
   const handleSubmit = async (e) => {
   e.preventDefault();
+  if (!token) {
+  toast.error("⚠️ Please log in first!");
+  return;
+  }
   setLoading(true);
   try {
     const res = await axios.post(
