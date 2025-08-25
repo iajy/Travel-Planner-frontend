@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const OAuth2SuccessPage = () => {
+const OAuth2Success = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const OAuth2SuccessPage = () => {
     </div>
   );
 };
-export default OAuth2SuccessPage;
+export default OAuth2Success;
