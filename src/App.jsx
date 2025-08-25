@@ -7,7 +7,7 @@ import OAuth2Success from "./Components/OAuth2Success";
 function App() {
   return (
     <>
-      <HashRouter>
+      
         <Routes>
           <Route path="/" element={<Hero />}></Route>
           <Route path="/oauth2-success" element={<OAuth2Success />} />
@@ -15,7 +15,7 @@ function App() {
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/ticket" element={<FlightSearch />}></Route>
         </Routes>
-      </HashRouter>
+      
     </>
   );
 }
