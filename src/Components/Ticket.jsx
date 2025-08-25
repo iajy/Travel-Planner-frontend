@@ -26,7 +26,7 @@ const Ticket = () => {
         "https://travel-planner-backend-production.up.railway.app/api/flights/iata",
         { params: { keyword: locationName } ,
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -44,7 +44,7 @@ const Ticket = () => {
         "https://travel-planner-backend-production.up.railway.app/api/flights/location",
         { params: { iataCode } ,
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -79,7 +79,7 @@ const Ticket = () => {
           children,
         },
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
