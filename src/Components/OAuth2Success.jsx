@@ -16,8 +16,8 @@ const OAuth2Success = () => {
       localStorage.setItem("userId", userId);
       localStorage.setItem("username", username);
       toast.success("Login successful");
-      navigate("/");
-      window.location.reload(); // Refresh for new state
+      navigate("/", { replace: true });
+      // window.location.reload(); // Refresh for new state
     } else {
       navigate("/login");
     }
