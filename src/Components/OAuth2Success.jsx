@@ -10,9 +10,6 @@ const OAuth2Success = () => {
     const token = urlParams.get("token");
     const userId = urlParams.get("userId");
     const username = urlParams.get("username");
-    console.log(token);
-    console.log(userId);
-    console.log(username);
 
     if (token) {
       localStorage.setItem("jwtToken", token);
