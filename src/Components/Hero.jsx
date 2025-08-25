@@ -88,7 +88,7 @@ const Hero = () => {
     // Check for errors (quota, invalid API key, etc.)
     if (aiResponse.error) {
       if (aiResponse.error.type === "insufficient_quota") {
-        toast.error("⚠️ Your AI quota is finished. Please upgrade or switch to free AI.");
+        toast.error("Your AI quota is finished. Please upgrade or switch to free AI.");
       } else {
         toast.error("AI Error: " + aiResponse.error.message);
       }
